@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Quiz WebSite</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <h:body style="padding: 60px;">
+        <b:navBar brand="Quiz WebSite" brandHref="index.xhtml" fixed="top" inverse="true">
+            <b:navbarLinks pull="right">
+                <h:form>
+                    <b:navbarLinks pull="right">
+                        <b:navLink value="Quiz" href="index.xhtml"></b:navLink>
+                        <b:navLink value="News" href="news.xhtml"></b:navLink>
+                        <b:navLink value="Profile" href="profile.xhtml"></b:navLink>
+                        <b:navCommandLink value="Logout" action="#{loginController.logout()}" />
+                    </b:navbarLinks>
+                </h:form>
+            </b:navbarLinks>
+        </b:navBar>
+        <h2>#{quizController.quiz.sujet}</h2>
+        <h:form>
+            <h:outputText value="Nom" />
+            <b:inputText value="#{loginController.userConnected.nom}" />
+            <h:outputText value="Prenom" />
+            <b:inputText value="#{loginController.userConnected.prenom}" />
+            <h:outputText value="Username" />
+            <b:inputText value="#{loginController.userConnected.username}" />
+            <b:navCommandLink class="btn btn-success" value="Send" action="#{loginController.updateProfile()}" />
+        </h:form>
+    </h:body>
+</html>

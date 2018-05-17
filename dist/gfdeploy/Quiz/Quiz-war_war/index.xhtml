@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Quiz WebSite</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <h:body style="padding: 60px;">
+        <b:navBar brand="Quiz WebSite" brandHref="index.xhtml" fixed="top" inverse="true">
+            <h:form>
+                <b:navbarLinks pull="right">
+                    <b:navLink value="Quiz" href="index.xhtml"></b:navLink>
+                    <b:navLink value="News" href="news.xhtml"></b:navLink>
+                    <b:navLink value="Profile" href="profile.xhtml"></b:navLink>
+                    <b:navCommandLink value="Logout" action="#{loginController.logout()}" />
+                </b:navbarLinks>
+            </h:form>
+        </b:navBar>
+        <h:form>
+            <c:forEach var="p" items="#{quizController.all}" >
+                <h:column>
+                <b:panel>
+                    <f:facet name="heading">
+                        <h:outputText value="#{p.sujet}"></h:outputText>
+                    </f:facet>
+                    Thème : <h:outputText value="#{p.idTheme.libelle}"/><br />
+                    Enseignant : <h:outputText value="#{p.enseignant}"/><br />
+                    Date : <h:outputText value="#{p.date}"/><br />
+                    <h:commandButton class="btn btn-success" value="Take the quiz" action="#{quizController.takeTheQuiz(p)}"/>
+                </b:panel>
+                </h:column>
+            </c:forEach>
+        </h:form>
+    </h:body>
+</html>

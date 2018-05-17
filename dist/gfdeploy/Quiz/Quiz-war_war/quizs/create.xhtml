@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gestion des quizs</title>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <h:outputLabel for="theme" >Thème</h:outputLabel>
+            <h:selectOneMenu value="#{quizController.themeId}">
+                <f:selectItems value="#{themeController.all}" var="t" itemValue="#{t.id}" itemLabel="#{t.libelle}" />
+            </h:selectOneMenu>
+            
+            <h:outputLabel for="sujet" >Sujet</h:outputLabel>
+            <h:inputText value="#{quizController.quiz.sujet}"></h:inputText>
+            
+            <h:outputLabel for="date" >Date</h:outputLabel>
+            <h:inputText id ="dateInput" value="#{quizController.quiz.date}" label = "Date" >
+                <f:convertDateTime pattern = "dd-mm-yyyy" />
+            </h:inputText>
+            
+            <h:outputLabel for="duree" >Durée</h:outputLabel>
+            <h:inputText value="#{quizController.quiz.durée}"></h:inputText>
+            
+            <h:outputLabel for="enseignant" >Enseignant</h:outputLabel>
+            <h:inputText value="#{quizController.quiz.enseignant}"></h:inputText>
+            
+            <h:outputLabel for="meilleurScore" >Meilleur Score</h:outputLabel>
+            <h:inputText value="#{quizController.quiz.meilleurScore}"></h:inputText>
+            
+            <h:outputLabel for="active" >Active</h:outputLabel>
+            <h:selectOneMenu value="#{quizController.quiz.active}">
+                    <f:selectItem itemValue="1" itemLabel="YES" />
+                    <f:selectItem itemValue="0" itemLabel="NO" />
+            </h:selectOneMenu>
+            
+            <h:commandButton value="Add" action="#{quizController.add()}"></h:commandButton>
+            
+        </h:form>
+    </h:body>
+</html>

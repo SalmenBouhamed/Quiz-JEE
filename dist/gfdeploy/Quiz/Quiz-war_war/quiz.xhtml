@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Quiz WebSite</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <h:body style="padding: 60px;">
+        <b:navBar brand="Quiz WebSite" brandHref="index.xhtml" fixed="top" inverse="true">
+            <b:navbarLinks pull="right">
+                <h:form>
+                    <b:navbarLinks pull="right">
+                        <b:navLink value="Quiz" href="index.xhtml"></b:navLink>
+                        <b:navLink value="News" href="news.xhtml"></b:navLink>
+                        <b:navLink value="Profile" href="profile.xhtml"></b:navLink>
+                        <b:navCommandLink value="Logout" action="#{loginController.logout()}" />
+                    </b:navbarLinks>
+                </h:form>
+            </b:navbarLinks>
+        </b:navBar>
+        <h2>#{quizController.quiz.sujet}</h2>
+        <h:form>
+            <ui:repeat var="question" value="#{quizController.quiz.questionList}" >
+                <input type="hidden" value="#{question.id}" name="question"/>
+                <b:panel title="#{question.enonce}" look="primary">
+                    <h:selectOneRadio>
+                        <ui:repeat var="c" value="#{question.choixList}">
+                            <input name="question#{question.id}" type="radio" value="#{c.id}" id="#{c.reponse}" />#{c.reponse}<br />
+                        </ui:repeat>
+                    </h:selectOneRadio>
+                </b:panel>
+            </ui:repeat>
+            <h:commandButton type="submit" action="#{scoreMangerController.calculeScore(quizController.quiz)}" class="btn btn-success" value="Send" />
+        </h:form>
+    </h:body>
+</html>
